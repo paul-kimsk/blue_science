@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>키즈 타자 연습 🐻✨</title>
+  <style>
+    :root{
+      --bg: #fff9fb;
+      --card: #ffffff;
+      --ink: #26263a;
+      --muted:#7a7a8c;
+      --pink:#ffb3c7;
+      --mint:#b7f0d4;
+      --sky:#bfe3ff;
+      --vio:#d9c7ff;
+      --yellow:#ffe39b;
+      --good:#34c759;
+      --bad:#ff3b30;
+      --accent:#ff7aa2;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: "Pretendard", ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, Apple SD Gothic Neo, Noto Sans KR, sans-serif;
+      color:var(--ink); background:linear-gradient(180deg,var(--bg),#fff);
+      display:flex; align-items:center; justify-content:center; padding:18px;
+    }
+    .app{width:min(1100px,100%);}
+    .card{
+      background:var(--card); border-radius:24px; box-shadow:0 12px 28px rgba(0,0,0,.08);
+      padding:20px; position:relative; overflow:hidden; border:6px solid #ffeaf1;
+    }
+    .header{display:flex; align-items:center; gap:14px; padding:6px 6px 14px 6px}
+    .mascot{width:64px; height:64px; border-radius:20px; background:linear-gradient(140deg,var(--pink),var(--yellow)); display:grid; place-items:center; box-shadow:0 6px 14px rgba(255,122,162,.4)}
+    .mascot span{font-size:34px}
+    h1{font-size:24px; margin:0}
+    .sub{color:var(--muted); font-size:14px}
+    .controls{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:8px 0 16px}
+    .pill{background:#fff4f8; border:2px solid #ffd2e1; padding:8px 12px; border-radius:999px; display:flex; gap:8px; align-items:center}
+    select, button, .toggle{
+      appearance:none; border:none; outline:none; background:#fff; color:var(--ink);
+      border-radius:12px; padding:10px 12px; box-shadow:inset 0 0 0 2px #eee; font-weight:600;
+    }
+    button.primary{background:var(--accent); color:#fff; box-shadow:none}
+    button:active{transform:translateY(1px)}
+    .row{display:flex; gap:12px; flex-wrap:wrap}
+    .target{
+      background:linear-gradient(180deg,#fff,#fff6fb); border-radius:18px; padding:16px; font-size:22px; line-height:1.6;
+      border:2px dashed #ffd2e1; min-height:90px
+    }
+    .char{display:inline-block; padding:2px 1px; border-radius:6px}
+    .char.current{background:var(--yellow)}
+    .char.ok{background:rgba(52,199,89,.18)}
+    .char.err{background:rgba(255,59,48,.18)}
+    .stats{display:grid; grid-template-columns: repeat(4,1fr); gap:8px; margin-top:12px}
+    .stat{background:#fff; border-radius:14px; padding:10px; text-align:center; box-shadow:inset 0 0 0 2px #f1f1f6}
+    .stat b{display:block; font-size:22px; margin-top:4px}
+    .keyboard{user-select:none; margin-top:14px;}
+    .kb-row{display:flex; gap:6px; justify-content:center; margin:4px 0}
+    .key{background:#fff; border-radius:12px; padding:12px 10px; min-width:36px; text-align:center; box-shadow:0 2px 0 #e6e6ef, inset 0 0 0 2px #eaeaf3; font-weight:700}
+    .key.big{min-width:64px}
+    .key.space{min-width:42%}
+    .key.hl{background:var(--sky)}
+    .bar{height:10px; background:#f4f4fb; border-radius:99px; overflow:hidden; margin-top:10px}
+    .bar>span{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--mint),var(--sky),var(--vio)); transition:width .25s ease}
+    .footer{display:flex; justify-content:space-between; align-items:center; margin-top:10px; color:var(--muted); font-size:13px}
+    .confetti{position:absolute; inset:0; pointer-events:none}
+    /* Cute stickers */
+    .sticker{position:absolute; opacity:.12; filter:blur(.2px)}
+    .s1{top:-10px; right:-10px; font-size:120px}
+    .s2{bottom:-18px; left:-8px; font-size:100px}
+
+    @media (max-width:700px){ .stats{grid-template-columns: repeat(2,1fr)} .key.space{min-width:52%} }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="card" id="card">
+      <div class="sticker s1">🍓</div>
+      <div class="sticker s2">🧸</div>
+      <canvas class="confetti" id="confetti"></canvas>
+
+      <div class="header">
+        <div class="mascot" aria-hidden="true"><span>🐻</span></div>
+        <div>
+          <h1>키즈 타자 연습 <small style="font-size:14px">— 즐겁게 톡톡!</small></h1>
+          <div class="sub">문장을 따라 치면 속도(WPM)와 정확도를 알려줘요. 소리/이펙트 ON 가능 ✨</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="pill">
+          모드
+          <select id="mode">
+            <option value="letters">알파벳</option>
+            <option value="hangul">한글 자모</option>
+            <option value="words">짧은 단어</option>
+            <option value="sentences" selected>쉬운 문장</option>
+          </select>
+        </div>
+        <div class="pill">
+          난이도
+          <select id="level">
+            <option value="1">Lv.1</option>
+            <option value="2" selected>Lv.2</option>
+            <option value="3">Lv.3</option>
+          </select>
+        </div>
+        <button class="primary" id="btnStart">시작/새 문제 🎲</button>
+        <button id="btnReset" title="초기화">초기화 ♻️</button>
+        <label class="toggle pill" title="키 눌림 소리">
+          <input type="checkbox" id="sound" /> 소리 🔔
+        </label>
+        <label class="toggle pill" title="완료 이펙트">
+          <input type="checkbox" id="fx" checked/> 이펙트 🎉
+        </label>
+      </div>
+
+      <div class="target" id="target" aria-live="polite"></div>
+      <div class="bar" aria-hidden="true"><span id="progress"></span></div>
+
+      <div class="stats" role="status" aria-live="polite">
+        <div class="stat">시간<b id="time">0.0s</b></div>
+        <div class="stat">WPM<b id="wpm">0</b></div>
+        <div class="stat">정확도<b id="acc">100%</b></div>
+        <div class="stat">연속성공<b id="streak">0 🔥</b></div>
+      </div>
+
+      <div class="keyboard" aria-hidden="true" id="keyboard"></div>
+
+      <div class="footer">
+        <span>Tip: 스페이스로 다음 문제, ESC로 초기화</span>
+        <span>만든이: 당신의 AI 도우미 🧑‍💻</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ----- Data -----
+    const DATA = {
+      letters:["a s d f j k l ;","q w e r t y u i o p","z x c v b n m"],
+      hangul:["ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅅ","ㅈ ㅊ ㅋ ㅌ ㅍ ㅎ","ㅏ ㅑ ㅓ ㅕ ㅗ ㅛ ㅜ ㅠ ㅡ ㅣ"],
+      words:[
+        "cat dog sun moon",
+        "토끼 곰 사자 여우",
+        "apple berry candy donut",
+        "바다 산 물고기 하늘",
+      ],
+      sentences:[
+        "토끼가 통통 뛰어요.",
+        "I see a blue sky.",
+        "별이 반짝반짝 빛나요.",
+        "Happy kids type happily!",
+        "사과는 아삭아삭 맛있어요.",
+        "We love to code and play.",
+      ]
+    };
+
+    // ----- Elements -----
+    const elTarget = document.getElementById('target');
+    const elProgress = document.getElementById('progress');
+    const elTime = document.getElementById('time');
+    const elWpm = document.getElementById('wpm');
+    const elAcc = document.getElementById('acc');
+    const elStreak = document.getElementById('streak');
+    const elKeyboard = document.getElementById('keyboard');
+
+    const modeSel = document.getElementById('mode');
+    const levelSel = document.getElementById('level');
+    const btnStart = document.getElementById('btnStart');
+    const btnReset = document.getElementById('btnReset');
+    const soundChk = document.getElementById('sound');
+    const fxChk = document.getElementById('fx');
+
+    // ----- State -----
+    let targetText = '';
+    let index = 0;
+    let correct = 0, wrong = 0, streak = 0;
+    let startedAt = 0; let finished = false;
+
+    // ----- Audio (simple pop) -----
+    let actx; function pop(ok=true){
+      if(!soundChk.checked) return;
+      actx ||= new (window.AudioContext||window.webkitAudioContext)();
+      const o = actx.createOscillator();
+      const g = actx.createGain();
+      o.type = 'sine'; o.frequency.value = ok? 880: 220;
+      g.gain.value = 0.06; o.connect(g); g.connect(actx.destination); o.start();
+      setTimeout(()=>{o.stop()}, 80);
+    }
+
+    // ----- Confetti (tiny canvas) -----
+    const confetti = (()=>{
+      const canvas = document.getElementById('confetti'); const ctx = canvas.getContext('2d');
+      let W=0,H=0, parts=[]; function resize(){ W=canvas.width=canvas.clientWidth; H=canvas.height=canvas.clientHeight }
+      window.addEventListener('resize', resize); resize();
+      function burst(){
+        if(!fxChk.checked) return;
+        parts=[]; for(let i=0;i<120;i++){
+          parts.push({x:W/2,y:0,vx:(Math.random()*4-2),vy:(Math.random()*-3-2),g:0.08+Math.random()*0.08, s:4+Math.random()*4, r:Math.random()*Math.PI});
+        }
+        let t=0; (function loop(){ ctx.clearRect(0,0,W,H); t++; parts.forEach(p=>{ p.vy+=p.g; p.x+=p.vx; p.y+=p.vy; p.r+=0.1; ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r); ctx.fillStyle = ['#ff7aa2','#bfe3ff','#b7f0d4','#ffe39b','#d9c7ff'][Math.floor(Math.random()*5)]; ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s); ctx.restore(); }); if(t<180) requestAnimationFrame(loop); })();
+      }
+      return {burst};
+    })();
+
+    // ----- Utility -----
+    function pick(){
+      const mode = modeSel.value; const lv = +levelSel.value;
+      const base = DATA[mode];
+      let line = base[Math.floor(Math.random()*base.length)];
+      if(lv===1){ line = line.split(' ').slice(0, Math.max(2, Math.floor(line.split(' ').length/2))).join(' '); }
+      if(lv===3){ line = (line + '   ' + base[Math.floor(Math.random()*base.length)]).trim(); }
+      return line;
+    }
+
+    function renderTarget(){
+      elTarget.innerHTML = '';
+      [...targetText].forEach((ch,i)=>{
+        const span = document.createElement('span');
+        span.textContent = ch; span.className = 'char' + (i===index?' current':'')
+          + (i<index? (typed[i]===targetText[i] ? ' ok' : ' err') : '');
+        elTarget.appendChild(span);
+      });
+    }
+
+    function resetStats(){
+      index=0; correct=0; wrong=0; streak=0; finished=false; startedAt=0;
+      typed=[]; updateStats(); elProgress.style.width='0%'; elStreak.textContent = `${streak} 🔥`;
+    }
+
+    function updateStats(){
+      const now = performance.now();
+      const elapsed = startedAt? (now - startedAt)/1000 : 0;
+      elTime.textContent = `${elapsed.toFixed(1)}s`;
+      const words = index/5; const wpm = elapsed? Math.round((words/elapsed)*60):0;
+      elWpm.textContent = wpm;
+      const total = Math.max(1, correct+wrong);
+      elAcc.textContent = `${Math.round((correct/total)*100)}%`;
+      elProgress.style.width = `${(index/Math.max(1,targetText.length))*100}%`;
+    }
+
+    let typed = [];
+
+    function newProblem(){
+      targetText = pick();
+      resetStats();
+      renderTarget();
+      pop(true);
+    }
+
+    // ----- Keyboard UI -----
+    const layout = [
+      ['`','1','2','3','4','5','6','7','8','9','0','-','=', 'Backspace'],
+      ['Tab','q','w','e','r','t','y','u','i','o','p','[',']','\\'],
+      ['CapsLock','a','s','d','f','g','h','j','k','l',';','\'','Enter'],
+      ['Shift','z','x','c','v','b','n','m',',','.','/','Shift'],
+      ['Space']
+    ];
+
+    const codeMap = new Map([
+      [' ','Space'],['\n','Enter']
+    ]);
+
+    function buildKeyboard(){
+      elKeyboard.innerHTML='';
+      layout.forEach(row=>{
+        const div = document.createElement('div'); div.className='kb-row';
+        row.forEach(k=>{
+          const el = document.createElement('div'); el.className='key'; el.textContent = k==='Space'?'Space':k;
+          if(['Backspace','Tab','CapsLock','Enter','Shift'].includes(k)) el.classList.add('big');
+          if(k==='Space') el.classList.add('space');
+          el.dataset.key = k.toLowerCase();
+          div.appendChild(el);
+        });
+        elKeyboard.appendChild(div);
+      });
+    }
+
+    function highlightKey(k){
+      const q = k.toLowerCase();
+      const el = elKeyboard.querySelector(`.key[data-key="${CSS.escape(q)}"]`);
+      if(el){ el.classList.add('hl'); setTimeout(()=>el.classList.remove('hl'), 150); }
+    }
+
+    // ----- Input handling -----
+    window.addEventListener('keydown', (e)=>{
+      if(['Shift','Meta','Alt','Control'].includes(e.key)) return; // ignore
+      if(!startedAt && !finished){ startedAt = performance.now(); }
+      if(e.key==='Escape'){ newProblem(); return; }
+      if(e.key===' '){ e.preventDefault(); if(finished){ newProblem(); return; } }
+
+      const expected = targetText[index];
+      const key = e.key.length===1? e.key : (e.key===' ' ? ' ' : e.key);
+
+      highlightKey(codeMap.get(key) || key);
+
+      if(finished) return;
+
+      if(key===expected){
+        typed[index]=key; index++; correct++; streak++; pop(true);
+        if(index>=targetText.length){ finished=true; updateStats();
+          if(fxChk.checked) confetti.burst();
+        }
+      } else {
+        if(key.length===1 || key==='Enter' || key==='Backspace' || key===' '){
+          wrong++; streak=0; pop(false);
+        }
+      }
+      renderTarget(); updateStats(); elStreak.textContent = `${streak} 🔥`;
+    });
+
+    btnStart.addEventListener('click', newProblem);
+    btnReset.addEventListener('click', ()=>{ resetStats(); renderTarget(); });
+
+    // Build keyboard and initial state
+    buildKeyboard();
+    newProblem();
+  </script>
+</body>
+</html>
+
