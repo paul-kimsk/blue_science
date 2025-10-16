@@ -1,173 +1,105 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>나의 홈페이지</title>
-  <meta name="description" content="GitHub Pages에 바로 올려서 쓸 수 있는 초간단 반응형 홈페이지 템플릿" />
-  <meta property="og:title" content="나의 홈페이지" />
-  <meta property="og:description" content="GitHub Pages에 바로 올려서 쓸 수 있는 초간단 반응형 홈페이지 템플릿" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://dummyimage.com/1200x630/121212/ffffff.png&text=My+Page" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌐</text></svg>">
-  <style>
-    :root {
-      --bg: #0b0f14;
-      --text: #e6edf3;
-      --muted: #a9b2bd;
-      --card: #0f1520;
-      --accent: #4f8cff;
-      --accent-2: #22d3ee;
-      --border: #1f2937;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans KR, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
-      background: linear-gradient(180deg, #090d12, #0b0f14 35%, #0b0f14);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(1080px, 92%); margin: 0 auto; }
-    /* Header */
-    header {
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: blur(10px);
-      background: rgba(9,13,18,0.6);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .2px; }
-    .brand .logo { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 8px 30px rgba(79, 140, 255, .35); }
-    nav ul { display: flex; gap: 18px; list-style: none; padding: 0; margin: 0; }
-    .nav a { color: var(--muted); font-weight: 600; padding: 8px 12px; border-radius: 10px; transition: 120ms ease; }
-    .nav a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
-    .cta { border: 1px solid var(--border); background: linear-gradient(180deg, #0d1522, #0c1320); padding: 8px 14px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,.25); }
-
-    /* Hero */
-    .hero { padding: 72px 0 48px; }
-    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; color: #cde8ff; background: rgba(79, 140, 255, .15); border: 1px solid rgba(79, 140, 255, .35); }
-    .hero h1 { font-size: clamp(28px, 5vw, 48px); margin: 14px 0 10px; line-height: 1.15; }
-    .hero p { color: var(--muted); font-size: clamp(14px, 2.2vw, 18px); }
-    .hero .actions { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 14px; border: 1px solid var(--border); background: #0f1520; font-weight: 700; }
-    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b0f14; }
-
-    /* Grid cards */
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
-    .card { grid-column: span 12; background: linear-gradient(180deg, #0e1522, #0c1220); border: 1px solid var(--border); border-radius: 16px; padding: 18px; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
-    .card h3 { margin: 0 0 8px; font-size: 18px; }
-    .card p { margin: 0; color: var(--muted); }
-    @media (min-width: 700px) {
-      .card { grid-column: span 6; }
-    }
-    @media (min-width: 960px) {
-      .card { grid-column: span 4; }
-    }
-
-    /* Section */
-    section { padding: 32px 0; }
-    section h2 { font-size: 22px; margin: 0 0 14px; }
-
-    /* Footer */
-    footer { margin-top: 40px; padding: 26px 0 40px; border-top: 1px solid var(--border); color: var(--muted); }
-
-    /* Utilities */
-    .muted { color: var(--muted); }
-    .center { text-align: center; }
-    .chip { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); font-size: 12px; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sunkyum (Sangyeon) Kim — CV</title>
+<meta name="description" content="Curriculum Vitae of Sunkyum (Sangyeon) Kim — AI/ML Manager at SK Telecom specializing in LLM Tuning, RAG, Search Ranking, and Recommendation." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--fg:#1f2937;
+--muted:#6b7280;
+--link:#2563eb;
+--bg:#ffffff;
+--card:#f9fafb;
+--max:860px;
+}
+body{margin:0;padding:0;font-family:Inter,system-ui,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+header{max-width:var(--max);margin:40px auto 20px;padding:0 20px;text-align:center}
+h1{font-size:2rem;margin-bottom:6px}
+h2{font-size:1.25rem;margin:30px 0 10px;border-bottom:1px solid #eee;padding-bottom:4px}
+.muted{color:var(--muted)}
+main{max-width:var(--max);margin:0 auto;padding:0 20px}
+ul{padding-left:1.1rem}
+li{margin:10px 0}
+</style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand"><span class="logo">★</span> <span>My Site</span></div>
-      <nav>
-        <ul>
-          <li><a href="#about">소개</a></li>
-          <li><a href="#projects">프로젝트</a></li>
-          <li><a class="cta" href="#contact">연락하기</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<header>
+<h1>Sunkyum (Sangyeon) Kim</h1>
+<p class="muted">Manager, AI/ML — SK Telecom</p>
+<p><a href="mailto:gsk1047@gmail.com">gsk1047@gmail.com</a></p>
+</header>
+<main>
+<section>
+<h2>Profile</h2>
+<p>AI/ML engineer and manager with extensive experience in Large Language Model (LLM) tuning, Retrieval-Augmented Generation (RAG), search ranking optimization, and recommendation systems. Skilled in designing production-grade pipelines that connect machine learning models to real-world products, with focus on reliability, evaluation metrics, and user experience. Passionate about scalable systems, prompt engineering, and fine-tuning frameworks for enterprise AI search and recommendation applications.</p>
+</section>
 
-  <main class="container">
-    <section class="hero">
-      <span class="badge">🚀 GitHub Pages Ready</span>
-      <h1>가볍고 빠른 <span style="background:linear-gradient(90deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent;">개인 홈페이지</span></h1>
-      <p>이 템플릿은 한 개의 <strong>index.html</strong> 파일만으로 구성되어 바로 배포할 수 있어요. 섹션만 수정하면 당신만의 랜딩 페이지가 됩니다.</p>
-      <div class="actions">
-        <a class="btn primary" href="#projects">프로젝트 보기</a>
-        <a class="btn" href="#about">간단 소개</a>
-      </div>
-    </section>
 
-    <section id="about">
-      <h2>🙋‍♂️ 소개</h2>
-      <p class="muted">여기에 본인 소개를 적어주세요. 무엇을 만드는 사람인지, 어떤 문제를 풀고 싶은지 2~3문장으로 담백하게.</p>
-      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-        <span class="chip">AI/ML</span>
-        <span class="chip">검색</span>
-        <span class="chip">오픈소스</span>
-        <span class="chip">자전거</span>
-        <span class="chip">레고</span>
-      </div>
-    </section>
+<section>
+<h2>Experience</h2>
+<p><strong>SK Telecom</strong> — <em>Manager, AI/ML Platform</em><br>
+<span class="muted">Seoul, Korea | 2020 – Present</span></p>
+<ul>
+<li>Lead development of PAAS (Prompt-as-a-Service) and AI Search frameworks leveraging LLMs for multi-domain search, recommendation, and media retrieval.</li>
+<li>Architected and optimized RAG pipelines integrating hybrid retrieval (BM25 + dense embeddings), cross-encoder reranking, and post‑processing filters.</li>
+<li>Designed supervised fine-tuning (SFT), instruction tuning, and LoRA adaptation workflows for domain‑specific LLMs.</li>
+<li>Implemented automated offline evaluation (nDCG, MRR, Recall@K) and A/B testing frameworks for ranking and recommendation quality monitoring.</li>
+<li>Collaborated with cross‑functional teams to deploy production‑ready models with observability dashboards and latency‑quality trade‑off management.</li>
+</ul>
 
-    <section id="projects">
-      <h2>🧩 프로젝트</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>프로젝트 A</h3>
-          <p>간단한 설명. GitHub 링크나 데모 링크를 여기에.</p>
-        </article>
-        <article class="card">
-          <h3>프로젝트 B</h3>
-          <p>무엇을 해결하는지, 어떤 스택을 썼는지 한두 줄로.</p>
-        </article>
-        <article class="card">
-          <h3>프로젝트 C</h3>
-          <p>이미지나 GIF를 넣고 싶다면 카드 안에 &lt;img&gt; 태그 추가.</p>
-        </article>
-      </div>
-    </section>
 
-    <section id="contact">
-      <h2>📬 연락하기</h2>
-      <p class="muted">문의는 메일로 주세요: <a href="mailto:you@example.com">you@example.com</a></p>
-    </section>
+<p><strong>SK Telecom — Media Agent Project</strong><br>
+<span class="muted">2023 – 2025</span></p>
+<ul>
+<li>Enhanced query understanding, semantic search, and personalized recommendation capabilities for media content discovery.</li>
+<li>Developed embedding and ranking models improving search relevance and recommendation diversity across user cohorts.</li>
+<li>Applied theme‑based curation and contextual retrieval to increase session engagement and click‑through rate (CTR).</li>
+</ul>
+</section>
 
-    <section>
-      <h2>⚙️ 커스터마이즈 팁</h2>
-      <ul>
-        <li>상단 <code>&lt;title&gt;</code>, <code>og:*</code> 메타태그를 본인 정보로 바꾸세요.</li>
-        <li>색을 바꾸려면 <code>:root</code>의 CSS 변수만 수정하면 됩니다.</li>
-        <li>섹션을 더 추가/삭제해도 레이아웃은 자동으로 반응형으로 맞춰집니다.</li>
-      </ul>
-    </section>
-  </main>
 
-  <footer>
-    <div class="container center">© <span id="year"></span> Your Name. All rights reserved.</div>
-  </footer>
+<section>
+<h2>Core Expertise</h2>
+<ul>
+<li><strong>LLM Tuning</strong> — Instruction/SFT fine‑tuning, LoRA/QLoRA, prompt optimization, evaluation automation.</li>
+<li><strong>RAG Systems</strong> — Document chunking, hybrid retrieval, re‑ranking, context optimization, retrieval metrics.</li>
+<li><strong>Search Ranking</strong> — Learning‑to‑Rank (LTR), click models, query intent classification, relevance evaluation.</li>
+<li><strong>Recommendation</strong> — Session‑based recommendation, contextual models, A/B testing and CUPED analysis.</li>
+<li><strong>Engineering</strong> — ML orchestration, vector database design, observability, and scalable deployment.</li>
+</ul>
+</section>
 
-  <script>
-    // 현재 연도 자동 표시
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // 부드러운 스크롤 (네이티브 지원 브라우저에서 자동 적용되지만, 보정용)
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if (el) {
-          e.preventDefault();
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
+
+<section>
+<h2>Education</h2>
+<ul>
+<li><strong>B.S.</strong> in Computer Science — Korea University</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Publications & Talks</h2>
+<ul>
+<li>“Evaluating RAG Pipelines at Scale: Metrics and Trade‑offs,” 2024 — Internal SK Telecom AI Symposium.</li>
+<li>“Instruction Tuning in Production: Lessons Learned from LLM Deployment,” 2023 — Korea AI Conference.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Contact</h2>
+<p>Email: <a href="mailto:gsk1047@gmail.com">gsk1047@gmail.com</a><br>
+Affiliation: SK Telecom<br>
+Role: Manager, AI/ML</p>
+</section>
+</main>
 </body>
 </html>
-
