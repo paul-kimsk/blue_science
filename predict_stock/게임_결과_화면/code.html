@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>예측 결과</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#38e07b",
+              "background-light": "#f6f8f7",
+              "background-dark": "#122017",
+            },
+            fontFamily: {
+              "display": ["Manrope", "Noto Sans KR", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        font-family: 'Manrope', 'Noto Sans KR', sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="text-white flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-white/90">arrow_back</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">삼성전자</h2>
+<div class="flex size-12 shrink-0"></div>
+</div>
+<main class="flex-grow px-4 pb-36">
+<!-- HeadlineText & BodyText -->
+<div class="text-center pt-6 pb-3">
+<h1 class="text-white tracking-light text-[32px] font-bold leading-tight">성공!</h1>
+<p class="text-primary text-2xl font-bold leading-normal pt-2">+5.2%</p>
+</div>
+<!-- Charts -->
+<div class="flex flex-wrap gap-4 py-6">
+<div class="flex w-full flex-1 flex-col gap-2 bg-black/20 dark:bg-white/5 rounded-xl p-4">
+<p class="text-white/70 text-base font-medium leading-normal">가격 비교</p>
+<p class="text-white tracking-light text-[32px] font-bold leading-tight truncate">₩82,300</p>
+<div class="flex gap-1 items-center">
+<p class="text-white/70 text-base font-normal leading-normal">예측 기간</p>
+<p class="text-primary text-base font-medium leading-normal">+₩4,100</p>
+</div>
+<div class="flex min-h-[180px] flex-1 flex-col gap-8 py-4">
+<svg fill="none" height="148" preserveaspectratio="none" viewbox="-3 0 478 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H326.769H0V109Z" fill="url(#paint0_linear_1131_5935)"></path>
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="#38e07b" stroke-linecap="round" stroke-width="3"></path>
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="paint0_linear_1131_5935" x1="236" x2="236" y1="1" y2="149">
+<stop stop-color="#38e07b" stop-opacity="0.3"></stop>
+<stop offset="1" stop-color="#38e07b" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="flex justify-between">
+<p class="text-white/70 text-[13px] font-bold leading-normal tracking-[0.015em]">시작</p>
+<p class="text-white/70 text-[13px] font-bold leading-normal tracking-[0.015em]">내 예측</p>
+<p class="text-white/70 text-[13px] font-bold leading-normal tracking-[0.015em]">실제</p>
+</div>
+</div>
+</div>
+</div>
+<!-- DescriptionList -->
+<div class="py-4">
+<div class="flex justify-between gap-x-6 py-3 border-b border-white/10">
+<p class="text-white/70 text-sm font-normal leading-normal">내 예측 가격</p>
+<p class="text-white text-sm font-medium leading-normal text-right">₩85,000</p>
+</div>
+<div class="flex justify-between gap-x-6 py-3 border-b border-white/10">
+<p class="text-white/70 text-sm font-normal leading-normal">실제 마감 가격</p>
+<p class="text-white text-sm font-medium leading-normal text-right">₩82,300</p>
+</div>
+<div class="flex justify-between gap-x-6 py-3 border-b border-white/10">
+<p class="text-white/70 text-sm font-normal leading-normal">수익률</p>
+<p class="text-primary text-sm font-bold leading-normal text-right">+5.2%</p>
+</div>
+<div class="flex justify-between gap-x-6 py-3">
+<p class="text-white/70 text-sm font-normal leading-normal">총 자산 변동</p>
+<p class="text-primary text-sm font-bold leading-normal text-right">+₩250,000</p>
+</div>
+</div>
+<!-- Ranking Information Card -->
+<div class="mt-6">
+<div class="bg-black/20 dark:bg-white/5 rounded-xl p-6 flex items-center justify-between">
+<div>
+<p class="text-white/70 text-sm font-normal">랭킹 변동</p>
+<p class="text-white text-xl font-bold mt-1">현재 랭킹: 23위</p>
+</div>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl">arrow_drop_up</span>
+<span class="text-3xl font-bold">5</span>
+</div>
+</div>
+</div>
+</main>
+<!-- CTA Section -->
+<div class="fixed bottom-0 left-0 right-0 p-4 bg-background-light dark:bg-background-dark/80 backdrop-blur-sm border-t border-white/10">
+<div class="flex items-center justify-center gap-4 pb-2">
+<a class="text-white/70 font-medium text-sm hover:text-white transition-colors" href="#">랭킹 보기</a>
+<span class="text-white/30">|</span>
+<a class="text-white/70 font-medium text-sm hover:text-white transition-colors" href="#">메인으로</a>
+</div>
+<button class="w-full bg-primary text-background-dark font-bold py-4 px-6 rounded-xl text-lg hover:bg-primary/90 transition-colors">
+                다음 게임 시작
+            </button>
+</div>
+</div>
+</body></html>

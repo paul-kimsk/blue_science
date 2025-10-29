@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>게임 현황 대시보드</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#38e07b",
+            "background-light": "#f6f8f7",
+            "background-dark": "#122017",
+            "charcoal": "#1B3124", /* Darker card background */
+            "accent-red": "#FF5252", /* Rise/Profit */
+            "accent-blue": "#448AFF", /* Fall/Loss */
+            "accent-gold": "#FFC107" /* Highlight/CTA */
+          },
+          fontFamily: {
+            "display": ["Manrope", "Noto Sans KR", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-dark group/design-root overflow-x-hidden">
+<!-- Top App Bar -->
+<div class="sticky top-0 z-10 flex items-center bg-background-dark/80 p-4 pb-2 justify-between backdrop-blur-sm">
+<div class="flex size-12 shrink-0 items-center justify-start text-white">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">게임 현황</h2>
+<div class="flex size-12 shrink-0 items-center justify-end text-white">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</div>
+</div>
+<main class="flex-1 pb-24">
+<!-- Game Info Banner -->
+<div class="p-4 pt-2">
+<div class="flex flex-col items-stretch justify-start rounded-xl bg-charcoal">
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 p-4">
+<p class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">제 3회 주식 투자 챔피언십</p>
+<p class="text-[#96c5a9] text-base font-normal leading-normal">총상금 1,000만원</p>
+<p class="text-white text-sm font-normal leading-normal pt-2">종료까지 남은 시간</p>
+</div>
+<div class="flex gap-4 px-4 pb-4">
+<div class="flex grow basis-0 flex-col items-stretch gap-2">
+<div class="flex h-14 grow items-center justify-center rounded-lg px-3 bg-[#264532]">
+<p class="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">15</p>
+</div>
+<div class="flex items-center justify-center"><p class="text-white text-xs font-normal leading-normal">Days</p></div>
+</div>
+<div class="flex grow basis-0 flex-col items-stretch gap-2">
+<div class="flex h-14 grow items-center justify-center rounded-lg px-3 bg-[#264532]">
+<p class="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">10</p>
+</div>
+<div class="flex items-center justify-center"><p class="text-white text-xs font-normal leading-normal">Hours</p></div>
+</div>
+<div class="flex grow basis-0 flex-col items-stretch gap-2">
+<div class="flex h-14 grow items-center justify-center rounded-lg px-3 bg-[#264532]">
+<p class="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">32</p>
+</div>
+<div class="flex items-center justify-center"><p class="text-white text-xs font-normal leading-normal">Minutes</p></div>
+</div>
+<div class="flex grow basis-0 flex-col items-stretch gap-2">
+<div class="flex h-14 grow items-center justify-center rounded-lg px-3 bg-[#264532]">
+<p class="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">15</p>
+</div>
+<div class="flex items-center justify-center"><p class="text-white text-xs font-normal leading-normal">Seconds</p></div>
+</div>
+</div>
+</div>
+</div>
+<!-- My Asset Card -->
+<div class="p-4">
+<div class="flex flex-col items-stretch justify-start rounded-xl bg-charcoal p-4 gap-4">
+<div class="flex justify-between items-center">
+<p class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">나의 자산 현황</p>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-8 px-4 bg-primary text-[#122118] text-sm font-medium leading-normal">
+<span class="truncate">내 포트폴리오 보기</span>
+</button>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative w-24 h-24">
+<svg class="w-full h-full" viewbox="0 0 36 36">
+<path class="text-accent-red" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none" stroke="currentColor" stroke-dasharray="70, 30" stroke-dashoffset="25" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<p class="text-accent-red text-lg font-bold">+25%</p>
+<p class="text-white/70 text-xs">수익률</p>
+</div>
+</div>
+<div class="flex flex-col gap-1 flex-1">
+<p class="text-[#96c5a9] text-sm leading-normal">총 평가 자산</p>
+<p class="text-white text-2xl font-bold leading-tight">1,250,000원</p>
+<p class="text-accent-red text-sm font-medium">+250,000원</p>
+</div>
+</div>
+<div class="flex gap-4 text-sm mt-2">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-white/80">주식 70%</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-accent-red"></div>
+<span class="text-white/80">현금 30%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Ranking List Card -->
+<div class="p-4">
+<div class="flex flex-col items-stretch justify-start rounded-xl bg-charcoal">
+<div class="p-4">
+<p class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">플레이어 랭킹</p>
+</div>
+<!-- Tab Navigation -->
+<div class="flex px-4 border-b border-white/10">
+<button class="flex-1 py-3 text-center text-sm font-medium text-primary border-b-2 border-primary">전체 랭킹</button>
+<button class="flex-1 py-3 text-center text-sm font-medium text-white/50">친구 랭킹</button>
+</div>
+<!-- Ranking List -->
+<div class="flex flex-col gap-1 p-4">
+<!-- Rank 1 -->
+<div class="flex items-center gap-4 rounded-lg bg-black/20 p-3">
+<div class="flex items-center justify-center w-8 text-xl font-bold text-accent-gold">
+<span class="material-symbols-outlined !text-2xl text-accent-gold" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="User 1 avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgBzHgYP9ODDnQ-l7i6hqPQJ5LI5aB5EeEAhNaa34HKstm_9C9fsUpR0z6xC0bSk1WjTz1qcP9n-jf60_ifieZ3rpE5QnxaFA9C-hc_8fb1FLhMeKJ6Yu972hcTBp15-lEaKlw7s9w5NngOXmqxiXJv71pGaTE-IhcbZjTXoVQqaiVd2EM-uOKhpggQ8XjorkCA8jiISIojTIQVXWH4B1x44holoTspZAxAs0hCkuoOkiGIOQf8Zf6hWMJTnQKll9ui1PaLOxOlE-n"/>
+<div class="flex-1">
+<p class="text-white font-medium">투자왕개미</p>
+<p class="text-white/70 text-sm">총자산: 2,500,000원</p>
+</div>
+<div class="text-right">
+<p class="text-accent-red font-semibold">+150.00%</p>
+</div>
+</div>
+<!-- Rank 2 -->
+<div class="flex items-center gap-4 rounded-lg p-3">
+<div class="flex items-center justify-center w-8 text-xl font-bold text-gray-400">2</div>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="User 2 avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6Pq7KygDyC847lLi5N7Iiuu0bVQFXtRc_KJ18ExIgNgzlYSYzqLF_dqoZV5UQl--I_AuO8sa1TXdQPYGO4xB6vum-vDD1To8Ju3by4HjVNq1blelfAh4Nmg7tA3n0dL_U1ving4fc7SFxoMhb87hfRZCk55_Rip_82WE2ZE8qYwoHkbrQU3Rj5CV1x25ij91YjuxmlzPEicNdoc4eVmWx_FTd8wrz9nWnG05STHhezNb95NWGsHuzOnikLO2CvfhFDiaqmi-wNiLn"/>
+<div class="flex-1">
+<p class="text-white font-medium">강남불패</p>
+<p class="text-white/70 text-sm">총자산: 2,120,000원</p>
+</div>
+<div class="text-right">
+<p class="text-accent-red font-semibold">+112.00%</p>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="flex items-center gap-4 rounded-lg p-3">
+<div class="flex items-center justify-center w-8 text-xl font-bold text-yellow-700">3</div>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="User 3 avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzspYubxxfSSZCvtQnXjA6Sq9FIf4KY4IE2vcz4umctpGxT_psJReoE1Z89mLq2cqAiEDO1hsQKXgNYbeMZbQGLyrAAU6YGWgCCnsjABZGorV2VMftrJDm7sI584FaFyt9qLicRKUwqwIC3oAocxaSAbE5K56CTFyd0KD-4qYd8zm6XypxppdgwOtq8srrJLfVXc8Tivt2Dpuiu8rU5U1ZKZ_AdOjBJzjS9OZZqXAyztJFcwnSXC8x25QEjg36fz9YP5m7uJywuTQF"/>
+<div class="flex-1">
+<p class="text-white font-medium">여의도스나이퍼</p>
+<p class="text-white/70 text-sm">총자산: 1,980,000원</p>
+</div>
+<div class="text-right">
+<p class="text-accent-red font-semibold">+98.00%</p>
+</div>
+</div>
+<!-- Rank 4 -->
+<div class="flex items-center gap-4 rounded-lg p-3">
+<div class="flex items-center justify-center w-8 text-lg font-medium text-white/60">4</div>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="User 4 avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0q33BlJBBM0TThpNWAC1-WmII8hTcWqcQTvxsQ6rAmBE16-EkrK3mUp91ltLcRsFi2c54bMB4zgm_yGpmkZFzYIrX2y4sKuB5azzWqnS9p3Gu7jLmxhyuJc7VYXckIBuZISavirZ86R4mc_FxJsjZB_Tk7na9FVFA_tGHQUf8yPUHd4ynnl94bni9KpFq5-sjYrw7ekpJNZNfiMJ0f5Wgmpwl3vuY53Y1FDRiBwNsY9fXHQiNnsDKvofUj1OLYGe1dPmaD77xOk4Z"/>
+<div class="flex-1">
+<p class="text-white font-medium">가치투자자</p>
+<p class="text-white/70 text-sm">총자산: 1,500,000원</p>
+</div>
+<div class="text-right">
+<p class="text-accent-red font-semibold">+50.00%</p>
+</div>
+</div>
+<!-- Rank 5 -->
+<div class="flex items-center gap-4 rounded-lg p-3">
+<div class="flex items-center justify-center w-8 text-lg font-medium text-white/60">5</div>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="User 5 avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1y8Cdjok4sNXimQPfzMIyujPn1i67G99lHOTv09raYUzqG6Kmd4yalls9ptM4pGchHwP49G4jYzxBx-I4WaH6YGX_y2nvSfrkMB64yDIzloUrRKYiJ_UX62d_NY1LcBA-UAM33sqOEnYE9LR3tscASiOpoPDpyCEnV7rp1qCP7K2uOkUkMUaajLOnOAmBUkmaSOALplyObUw4dRzm7GfH0kPXvUbsmwhfN8cGfHGH-cnJ-19ufapVSnbiGrYN0Q5t19usyDHETqSp"/>
+<div class="flex-1">
+<p class="text-white font-medium">주린이탈출</p>
+<p class="text-white/70 text-sm">총자산: 1,300,000원</p>
+</div>
+<div class="text-right">
+<p class="text-accent-red font-semibold">+30.00%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- My Rank View (Fixed) -->
+<div class="fixed bottom-16 left-0 right-0 p-4 bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center gap-4 rounded-lg bg-primary/20 p-3 border border-primary">
+<div class="flex items-center justify-center w-8 text-lg font-bold text-white">15</div>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="My avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0o9C-pY53acRSEfx6aq1q3HlJHtMRBAhX5W36hqcP51xJs_HvryNAvGhrrAwwdZxlxK3it737HD04MUmHjZrdjSYKERs4MNP60LJucvrkOTYo17ZqW2lxQxeQiK-8hR9IWMy1QvH2M89DUj58tOUohkjMG1MPyMhsawIiYm2Nj6c4XB8lnxoDRoljJuFP-oPwTs5teJPM3iNnF7g8uboqXoRxHA2JNFzpXUsW7-FvEyIRf9F0eE3r9oCKS7pQXWjrReB_yvAq7_Hx"/>
+<div class="flex-1">
+<p class="text-white font-medium">나의 순위</p>
+<p class="text-white/70 text-sm">총자산: 1,250,000원</p>
+</div>
+<div class="text-right">
+<p class="text-accent-red font-semibold">+25.00%</p>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 h-16 bg-charcoal border-t border-white/10">
+<div class="flex h-full items-center justify-around">
+<div class="flex flex-col items-center gap-1 text-white/50">
+<span class="material-symbols-outlined">home</span>
+<span class="text-xs">홈</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assessment</span>
+<span class="text-xs font-bold">게임</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-white/50">
+<span class="material-symbols-outlined">candlestick_chart</span>
+<span class="text-xs">거래</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-white/50">
+<span class="material-symbols-outlined">forum</span>
+<span class="text-xs">커뮤니티</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>
